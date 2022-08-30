@@ -1,3 +1,11 @@
 const connect = require('./client');
+const setupInput = require('./input');
 
-connect();
+
+
+
+console.log("Connecting...");
+const connectionObj = connect();
+setupInput(connectionObj);
+
+
