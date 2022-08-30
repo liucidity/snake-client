@@ -1,4 +1,7 @@
+const {MOVE_UP_KEY, MOVE_DOWN_KEY, MOVE_LEFT_KEY, MOVE_RIGHT_KEY, messages} = require('./constants');
+
 let connection;
+
 
 
 const setupInput = function(conn) {
@@ -21,26 +24,21 @@ const handleUserInput = function(key) {
     console.log('quit');
     process.exit();
   }
-  if (key === 'w') {
+  if (key.toLowerCase() === MOVE_UP_KEY) {
     connection.write("Move: up");
   }
-  if (key === 'a') {
+  if (key.toLowerCase() === MOVE_LEFT_KEY) {
     connection.write("Move: left");
   }
-  if (key === 's') {
+  if (key.toLowerCase() === MOVE_DOWN_KEY) {
     connection.write("Move: down");
   }
-  if (key === 'd') {
+  if (key.toLowerCase() === MOVE_RIGHT_KEY) {
     connection.write("Move: right");
   }
-  if (key === 'c') {
-    connection.write("Say: C'MERE!");
-  }
-  if (key === 'q') {
-    connection.write("Say: Quit runnin'!");
-  }
-  if (key === 'e') {
-    connection.write("Say: EVASIVE MANEUVERS");
+
+  if (Object.keys(messages).includes(key)) {
+    connection.write(messages[key]);
   }
 
 
